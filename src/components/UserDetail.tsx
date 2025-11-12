@@ -1,7 +1,5 @@
-import { Mail, Phone, MapPin, Edit, MessageSquare, MoreVertical } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
+import { Mail, Phone, MapPin, MessageSquare, MoreVertical } from "lucide-react";
+import { Box, Button, Avatar, Badge, Flex, Text, IconButton } from "@radix-ui/themes";
 
 interface Task {
   title: string;
@@ -10,90 +8,106 @@ interface Task {
 }
 
 const tasks: Task[] = [
-  { title: "Sign the upcoming contract", dueDate: "Tue, Feb 13, 2023", color: "bg-purple-500" },
-  { title: "Confirm the personnel payments", dueDate: "Thu, Feb 15, 2023", color: "bg-red-500" },
-  { title: "Check the cargo's arrival", dueDate: "Tue, Feb 13, 2023", color: "bg-blue-500" },
+  { title: "Sign the upcoming contract", dueDate: "Tue, Feb 13, 2023", color: "#8b5cf6" },
+  { title: "Confirm the personnel payments", dueDate: "Thu, Feb 15, 2023", color: "#ef4444" },
+  { title: "Check the cargo's arrival", dueDate: "Tue, Feb 13, 2023", color: "#3b82f6" },
 ];
 
 export function UserDetail() {
   return (
-    <div className="w-96 bg-gradient-to-br from-pink-100 to-purple-100 flex flex-col h-screen">
-      <div className="p-6 flex items-center justify-between border-b border-white/50">
-        <h2 className="text-lg font-semibold text-foreground">User Detail</h2>
-        <Button variant="ghost" size="icon" className="w-8 h-8">
-          <MoreVertical className="w-4 h-4" />
-        </Button>
-      </div>
+    <Box className="w-96 h-screen flex flex-col" style={{ background: "linear-gradient(135deg, #fce7f3 0%, #e9d5ff 100%)" }}>
+      <Box className="p-6 border-b" style={{ borderColor: "rgba(255, 255, 255, 0.5)" }}>
+        <Flex align="center" justify="between">
+          <Text size="4" weight="medium">User Detail</Text>
+          <IconButton variant="ghost" size="1">
+            <MoreVertical className="w-4 h-4" />
+          </IconButton>
+        </Flex>
+      </Box>
 
-      <div className="p-6 flex flex-col items-center">
-        <div className="relative mb-4">
-          <Avatar className="w-24 h-24">
-            <AvatarImage src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop" />
-            <AvatarFallback>EL</AvatarFallback>
-          </Avatar>
-          <div className="absolute bottom-0 right-0 w-4 h-4 bg-success rounded-full border-2 border-white" />
-        </div>
+      <Box className="p-6 flex flex-col items-center">
+        <Box className="relative mb-4">
+          <Avatar
+            size="7"
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop"
+            fallback="EL"
+          />
+          <Box 
+            className="absolute bottom-0 right-0 w-4 h-4 rounded-full border-2"
+            style={{ 
+              backgroundColor: "var(--green-9)",
+              borderColor: "white"
+            }}
+          />
+        </Box>
 
-        <div className="text-center mb-6">
-          <div className="flex items-center justify-center gap-2 mb-1">
-            <h3 className="text-xl font-semibold text-foreground">Emily Lynch</h3>
-            <Badge className="bg-primary text-primary-foreground">✓</Badge>
-          </div>
-          <p className="text-sm text-muted-foreground">Production Line Expert</p>
-        </div>
+        <Box className="text-center mb-6">
+          <Flex align="center" justify="center" gap="2" className="mb-1">
+            <Text size="5" weight="medium">Emily Lynch</Text>
+            <Badge color="cyan">✓</Badge>
+          </Flex>
+          <Text size="2" style={{ color: "var(--gray-11)" }}>Production Line Expert</Text>
+        </Box>
 
-        <div className="flex gap-2 mb-6 w-full">
-          <Button variant="outline" className="flex-1 border-primary text-primary hover:bg-primary/10">
-            <MessageSquare className="w-4 h-4 mr-2" />
+        <Flex gap="2" className="mb-6 w-full">
+          <Button variant="outline" className="flex-1" size="2">
+            <MessageSquare className="w-4 h-4" />
             Assign Task
           </Button>
-          <Button className="flex-1 bg-primary hover:bg-primary/90">
-            <Mail className="w-4 h-4 mr-2" />
+          <Button className="flex-1" size="2">
+            <Mail className="w-4 h-4" />
             Message
           </Button>
-        </div>
-      </div>
+        </Flex>
+      </Box>
 
-      <div className="px-6 pb-6 space-y-4">
-        <div>
-          <h4 className="text-sm font-semibold text-foreground mb-3">Contact information</h4>
-          <div className="space-y-3">
-            <div className="flex items-start gap-3">
-              <Mail className="w-4 h-4 text-muted-foreground mt-0.5" />
-              <div>
-                <div className="text-xs text-muted-foreground">E-mail</div>
-                <div className="text-sm text-foreground">e.lynch@gmail.com</div>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <Phone className="w-4 h-4 text-muted-foreground mt-0.5" />
-              <div>
-                <div className="text-xs text-muted-foreground">Phone</div>
-                <div className="text-sm text-foreground">(616) 396-8484</div>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <MapPin className="w-4 h-4 text-muted-foreground mt-0.5" />
-              <div>
-                <div className="text-xs text-muted-foreground">Address</div>
-                <div className="text-sm text-foreground">84 E 8th St - Town Holland - Michigan - 49423 - United States</div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <Box className="px-6 pb-6 space-y-4 overflow-auto">
+        <Box>
+          <Text size="3" weight="medium" className="mb-3 block">Contact information</Text>
+          <Box className="space-y-3">
+            <Flex gap="3" align="start">
+              <Mail className="w-4 h-4 mt-0.5" style={{ color: "var(--gray-11)" }} />
+              <Box>
+                <Text size="1" style={{ color: "var(--gray-11)", display: "block" }}>E-mail</Text>
+                <Text size="2">e.lynch@gmail.com</Text>
+              </Box>
+            </Flex>
+            <Flex gap="3" align="start">
+              <Phone className="w-4 h-4 mt-0.5" style={{ color: "var(--gray-11)" }} />
+              <Box>
+                <Text size="1" style={{ color: "var(--gray-11)", display: "block" }}>Phone</Text>
+                <Text size="2">(616) 396-8484</Text>
+              </Box>
+            </Flex>
+            <Flex gap="3" align="start">
+              <MapPin className="w-4 h-4 mt-0.5" style={{ color: "var(--gray-11)" }} />
+              <Box>
+                <Text size="1" style={{ color: "var(--gray-11)", display: "block" }}>Address</Text>
+                <Text size="2">84 E 8th St - Town Holland - Michigan - 49423 - United States</Text>
+              </Box>
+            </Flex>
+          </Box>
+        </Box>
 
-        <div>
-          <h4 className="text-sm font-semibold text-foreground mb-3">Emily's upcoming tasks</h4>
-          <div className="space-y-2">
+        <Box>
+          <Text size="3" weight="medium" className="mb-3 block">Emily's upcoming tasks</Text>
+          <Box className="space-y-2">
             {tasks.map((task, index) => (
-              <div key={index} className="bg-white/80 rounded-lg p-3 border-l-4" style={{ borderLeftColor: task.color.replace('bg-', '') }}>
-                <div className="text-sm font-medium text-foreground mb-1">{task.title}</div>
-                <div className="text-xs text-muted-foreground">Due date: {task.dueDate}</div>
-              </div>
+              <Box 
+                key={index} 
+                className="rounded-lg p-3"
+                style={{ 
+                  backgroundColor: "rgba(255, 255, 255, 0.8)",
+                  borderLeft: `4px solid ${task.color}`
+                }}
+              >
+                <Text size="2" weight="medium" className="block mb-1">{task.title}</Text>
+                <Text size="1" style={{ color: "var(--gray-11)" }}>Due date: {task.dueDate}</Text>
+              </Box>
             ))}
-          </div>
-        </div>
-      </div>
-    </div>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
   );
 }

@@ -1,5 +1,6 @@
 import { Home, Users, FileText, TrendingUp, Package, BarChart3, Settings } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
+import { Box, Flex, Text } from "@radix-ui/themes";
 
 const menuItems = [
   { title: "Accounting", icon: FileText, url: "/" },
@@ -13,31 +14,56 @@ const menuItems = [
 
 export function AppSidebar() {
   return (
-    <aside className="w-52 bg-sidebar border-r border-border flex flex-col h-screen">
-      <div className="p-6 border-b border-border">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded bg-foreground flex items-center justify-center">
-            <span className="text-background font-bold text-sm">S</span>
-          </div>
-          <span className="font-semibold text-foreground">Sasfo</span>
-        </div>
-      </div>
+    <Box 
+      className="w-52 bg-white border-r h-screen flex flex-col"
+      style={{ borderColor: "var(--gray-6)" }}
+    >
+      <Box className="p-6 border-b" style={{ borderColor: "var(--gray-6)" }}>
+        <Flex align="center" gap="2">
+          <Flex 
+            align="center" 
+            justify="center"
+            className="w-8 h-8 rounded"
+            style={{ backgroundColor: "var(--gray-12)" }}
+          >
+            <Text size="2" weight="bold" style={{ color: "white" }}>S</Text>
+          </Flex>
+          <Text size="3" weight="medium">Sasfo</Text>
+        </Flex>
+      </Box>
       
-      <div className="flex-1 py-4">
-        <div className="px-3 space-y-1">
+      <Box className="flex-1 py-4">
+        <Box className="px-3 space-y-1">
           {menuItems.map((item) => (
             <NavLink
               key={item.title}
               to={item.url}
-              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:bg-sidebar-accent hover:text-foreground transition-colors"
-              activeClassName="bg-sidebar-accent text-foreground font-medium"
+              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors"
+              style={{ 
+                color: "var(--gray-11)",
+              }}
+              activeClassName="font-medium"
             >
-              <item.icon className="w-4 h-4" />
-              <span>{item.title}</span>
+              {({ isActive }) => (
+                <Flex 
+                  align="center" 
+                  gap="3" 
+                  className="w-full"
+                  style={{
+                    backgroundColor: isActive ? "var(--gray-3)" : "transparent",
+                    color: isActive ? "var(--gray-12)" : "var(--gray-11)",
+                    padding: "8px 12px",
+                    borderRadius: "var(--radius-3)",
+                  }}
+                >
+                  <item.icon className="w-4 h-4" />
+                  <Text size="2">{item.title}</Text>
+                </Flex>
+              )}
             </NavLink>
           ))}
-        </div>
-      </div>
-    </aside>
+        </Box>
+      </Box>
+    </Box>
   );
 }

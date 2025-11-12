@@ -1,8 +1,5 @@
 import { MoreVertical, Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Box, Button, TextField, Badge, Avatar, Flex, Text, IconButton, Table } from "@radix-ui/themes";
 
 interface User {
   id: string;
@@ -31,91 +28,104 @@ interface UsersTableProps {
 
 export function UsersTable({ onUserSelect, selectedUserId }: UsersTableProps) {
   return (
-    <div className="flex-1 flex flex-col bg-background">
-      <div className="border-b border-border p-4 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <h2 className="text-lg font-semibold text-foreground">Users & Access List</h2>
-          <span className="text-sm text-muted-foreground">3 users selected</span>
-        </div>
-        <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-          + New User
-        </Button>
-      </div>
+    <Box className="flex-1 flex flex-col bg-white">
+      <Box className="border-b p-4" style={{ borderColor: "var(--gray-6)" }}>
+        <Flex align="center" justify="between">
+          <Flex align="center" gap="4">
+            <Text size="4" weight="medium">Users & Access List</Text>
+            <Text size="2" style={{ color: "var(--gray-11)" }}>3 users selected</Text>
+          </Flex>
+          <Button size="2">+ New User</Button>
+        </Flex>
+      </Box>
 
-      <div className="p-4 border-b border-border">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-          <Input 
-            placeholder="Search in list" 
-            className="pl-10 bg-card"
-          />
-        </div>
-      </div>
+      <Box className="p-4 border-b" style={{ borderColor: "var(--gray-6)" }}>
+        <TextField.Root 
+          placeholder="Search in list"
+          size="2"
+        >
+          <TextField.Slot>
+            <Search className="w-4 h-4" style={{ color: "var(--gray-11)" }} />
+          </TextField.Slot>
+        </TextField.Root>
+      </Box>
 
-      <div className="flex-1 overflow-auto">
-        <table className="w-full">
-          <thead className="bg-muted/50 border-b border-border sticky top-0">
-            <tr>
-              <th className="text-left p-3 text-xs font-medium text-muted-foreground uppercase">Full Name</th>
-              <th className="text-left p-3 text-xs font-medium text-muted-foreground uppercase">Username</th>
-              <th className="text-left p-3 text-xs font-medium text-muted-foreground uppercase">Expire Date</th>
-              <th className="text-left p-3 text-xs font-medium text-muted-foreground uppercase">Status</th>
-              <th className="text-left p-3 text-xs font-medium text-muted-foreground uppercase">Condition</th>
-              <th className="w-10"></th>
-            </tr>
-          </thead>
-          <tbody>
+      <Box className="flex-1 overflow-auto">
+        <Table.Root variant="surface">
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeaderCell>Full Name</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Username</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Expire Date</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Condition</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell></Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
             {users.map((user) => (
-              <tr 
+              <Table.Row 
                 key={user.id}
                 onClick={() => onUserSelect(user)}
-                className={`border-b border-border hover:bg-muted/30 cursor-pointer transition-colors ${
-                  selectedUserId === user.id ? 'bg-muted/50' : ''
-                }`}
+                className="cursor-pointer"
+                style={{
+                  backgroundColor: selectedUserId === user.id ? "var(--gray-2)" : "transparent",
+                }}
               >
-                <td className="p-3">
-                  <div className="flex items-center gap-3">
-                    <Avatar className="w-8 h-8">
-                      <AvatarImage src={user.avatar} />
-                      <AvatarFallback className="bg-primary/10 text-primary text-xs">
-                        {user.name.split(' ').map(n => n[0]).join('')}
-                      </AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <div className="font-medium text-foreground text-sm">{user.name}</div>
-                      <div className="text-xs text-muted-foreground">{user.role}</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="p-3 text-sm text-foreground">{user.username}</td>
-                <td className="p-3 text-sm text-foreground">{user.expireDate}</td>
-                <td className="p-3">
+                <Table.Cell>
+                  <Flex align="center" gap="3">
+                    <Avatar
+                      size="2"
+                      src={user.avatar}
+                      fallback={user.name.split(' ').map(n => n[0]).join('')}
+                      color="cyan"
+                    />
+                    <Box>
+                      <Text size="2" weight="medium">{user.name}</Text>
+                      <Text size="1" style={{ color: "var(--gray-11)", display: "block" }}>
+                        {user.role}
+                      </Text>
+                    </Box>
+                  </Flex>
+                </Table.Cell>
+                <Table.Cell>
+                  <Text size="2">{user.username}</Text>
+                </Table.Cell>
+                <Table.Cell>
+                  <Text size="2">{user.expireDate}</Text>
+                </Table.Cell>
+                <Table.Cell>
                   <Badge 
-                    variant={user.status === "Active" ? "default" : "secondary"}
-                    className={user.status === "Active" 
-                      ? "bg-success/10 text-success hover:bg-success/20 border-0" 
-                      : "bg-destructive/10 text-destructive hover:bg-destructive/20 border-0"
-                    }
+                    color={user.status === "Active" ? "green" : "red"}
+                    variant="soft"
                   >
                     {user.status}
                   </Badge>
-                </td>
-                <td className="p-3">
-                  <div className="flex items-center gap-2">
-                    <div className={`w-2 h-2 rounded-full ${user.condition === "Online" ? "bg-success" : "bg-destructive"}`} />
-                    <span className="text-sm text-foreground">{user.condition}</span>
-                  </div>
-                </td>
-                <td className="p-3">
-                  <Button variant="ghost" size="icon" className="w-8 h-8">
+                </Table.Cell>
+                <Table.Cell>
+                  <Flex align="center" gap="2">
+                    <Box 
+                      className="w-2 h-2 rounded-full"
+                      style={{
+                        backgroundColor: user.condition === "Online" 
+                          ? "var(--green-9)" 
+                          : "var(--red-9)"
+                      }}
+                    />
+                    <Text size="2">{user.condition}</Text>
+                  </Flex>
+                </Table.Cell>
+                <Table.Cell>
+                  <IconButton variant="ghost" size="1">
                     <MoreVertical className="w-4 h-4" />
-                  </Button>
-                </td>
-              </tr>
+                  </IconButton>
+                </Table.Cell>
+              </Table.Row>
             ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+          </Table.Body>
+        </Table.Root>
+      </Box>
+    </Box>
   );
 }

@@ -1,0 +1,167 @@
+/*
+ * Custom Theme Override
+ * Cambio de color cyan a verde #4cb74a
+ */
+
+:root,
+.light,
+.light-theme {
+  /* Green scale customizada - Base: #4cb74a */
+  --green-1: #f0fdf4;
+  --green-2: #dcfce7;
+  --green-3: #bbf7d0;
+  --green-4: #86efac;
+  --green-5: #6ee7b7;
+  --green-6: #4cb74a;
+  --green-7: #45a843;
+  --green-8: #3d943c;
+  --green-9: #4cb74a;
+  --green-10: #45a843;
+  --green-11: #3d943c;
+  --green-12: #1a5e1a;
+
+  /* Green alpha scale */
+  --green-a1: #00c00004;
+  --green-a2: #00a30014;
+  --green-a3: #00a3002d;
+  --green-a4: #00a10046;
+  --green-a5: #009d0061;
+  --green-a6: #4cb74a;
+  --green-a7: #45a843;
+  --green-a8: #3d943cbd;
+  --green-a9: #4cb74ae6;
+  --green-a10: #45a843;
+  --green-a11: #3d943c;
+  --green-a12: #1a5e1ae9;
+
+  /* Superficie y contraste */
+  --green-surface: #f0fdf4;
+  --green-indicator: #4cb74a;
+  --green-track: #4cb74a;
+  --green-contrast: #ffffff;
+}
+
+.dark,
+.dark-theme {
+  /* Green scale para dark mode */
+  --green-1: #0d1912;
+  --green-2: #0f1e13;
+  --green-3: #132818;
+  --green-4: #16301d;
+  --green-5: #1a3a23;
+  --green-6: #1f462a;
+  --green-7: #275732;
+  --green-8: #2f6e3b;
+  --green-9: #4cb74a;
+  --green-10: #58c456;
+  --green-11: #6dd16b;
+  --green-12: #b8f5b7;
+
+  /* Green alpha scale para dark mode */
+  --green-a1: #00de0008;
+  --green-a2: #29f06411;
+  --green-a3: #2df56816;
+  --green-a4: #2df9651f;
+  --green-a5: #32ff6c29;
+  --green-a6: #43ff7035;
+  --green-a7: #4bfd7547;
+  --green-a8: #51ff7761;
+  --green-a9: #4cb74a;
+  --green-a10: #58c456;
+  --green-a11: #6dd16b;
+  --green-a12: #b8f5b7;
+
+  /* Superficie y contraste */
+  --green-surface: #0e1a1080;
+  --green-indicator: #4cb74a;
+  --green-track: #4cb74a;
+  --green-contrast: #ffffff;
+}
+
+/* Asegurar que los botones usen el color correcto */
+.rt-Button[data-accent-color="green"],
+.rt-Button[data-accent-color="green"]:where([data-variant="solid"]) {
+  background-color: #4cb74a;
+}
+
+.rt-Button[data-accent-color="green"]:where([data-variant="solid"]):hover {
+  background-color: #45a843;
+}
+
+.rt-Button[data-accent-color="green"]:where([data-variant="solid"]):active {
+  background-color: #3d943c;
+}
+
+/* Badges */
+.rt-Badge[data-accent-color="green"] {
+  background-color: var(--green-3);
+  color: #3d943c;
+}
+
+/* Links y text colors */
+.rt-Text[data-accent-color="green"],
+a[data-accent-color="green"] {
+  color: #4cb74a;
+}
+
+/* Iconos y elementos interactivos */
+.rt-IconButton[data-accent-color="green"] {
+  color: #4cb74a;
+}
+
+.rt-IconButton[data-accent-color="green"]:hover {
+  background-color: var(--green-3);
+}
+
+/* Select dropdown */
+.rt-SelectTrigger[data-accent-color="green"] {
+  border-color: var(--green-7);
+}
+
+.rt-SelectTrigger[data-accent-color="green"]:focus {
+  border-color: #4cb74a;
+  box-shadow: 0 0 0 1px #4cb74a;
+}
+
+/* TextField con focus */
+.rt-TextFieldInput:focus {
+  border-color: #4cb74a;
+  box-shadow: 0 0 0 1px #4cb74a;
+}
+
+/* Checkbox y Radio checked */
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+  background-color: #4cb74a;
+  border-color: #4cb74a;
+}
+
+/* Switch */
+.rt-Switch[data-accent-color="green"]:where([data-state="checked"]) {
+  background-color: #4cb74a;
+}
+
+/* Progress bar */
+.rt-ProgressIndicator[data-accent-color="green"] {
+  background-color: #4cb74a;
+}
+
+/* Slider */
+.rt-SliderTrack[data-accent-color="green"] .rt-SliderRange {
+  background-color: #4cb74a;
+}
+
+.rt-SliderThumb[data-accent-color="green"] {
+  background-color: #4cb74a;
+}
+
+/* Tabs activo */
+.rt-TabsTrigger[data-accent-color="green"][data-state="active"] {
+  color: #4cb74a;
+  border-bottom-color: #4cb74a;
+}
+
+/* Loading spinner */
+.animate-spin {
+  color: #4cb74a;
+}

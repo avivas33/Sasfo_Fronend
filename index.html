@@ -7,6 +7,15 @@
     <meta name="description" content="Professional user management and access control system" />
     <meta name="author" content="Sasfo" />
 
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/jpeg" href="/faviconV2.jpeg" />
+    <link rel="shortcut icon" type="image/jpeg" href="/faviconV2.jpeg" />
+    <!-- iOS Home Screen icon (ideal: PNG 180x180). Usamos temporalmente el JPEG existente. -->
+    <link rel="apple-touch-icon" href="/faviconV2.jpeg" />
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+
     <meta property="og:title" content="Sasfo - User Management System" />
     <meta property="og:description" content="Professional user management and access control system" />
     <meta property="og:type" content="website" />
@@ -20,5 +29,12 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Initialize Google Maps callback
+      window.initMap = function() {
+        console.log('Google Maps API loaded');
+      };
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAy-6jw_44YzcqQ1w_DGB4o-Wg7p5sNm3Y&callback=initMap" async defer></script>
   </body>
 </html>

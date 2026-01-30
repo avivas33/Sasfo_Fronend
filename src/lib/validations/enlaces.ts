@@ -1,0 +1,37 @@
+import { z } from "zod";
+
+export const enlaceSchema = z.object({
+  Cliente: z.string().min(1, "El cliente es requerido"),
+  Fecha_Activacion: z.string().optional(),
+  Area_DesarrolloA: z.string().optional(),
+  Area_DesarrolloZ: z.string().optional(),
+  SitioA: z.string().optional(),
+  SitioZ: z.string().optional(),
+  CoordenadasA: z.string().optional(),
+  CoordenadasZ: z.string().optional(),
+  Modulo: z.string().optional(),
+  Service_Location: z.string().optional(),
+  CID_P1: z.string().optional(),
+  CID_P2: z.string().optional(),
+  ODF: z.string().optional(),
+  ODFP1: z.number().min(0).default(0),
+  ODFP2: z.number().min(0).default(0),
+  FTP: z.string().optional(),
+  FTPP1: z.string().optional(),
+  FTPP2: z.string().optional(),
+  DistanciaP1: z.number().min(0).default(0),
+  DistanciaP2: z.number().min(0).default(0),
+  Servicio: z.string().optional(),
+  Tipo: z.string().optional(),
+  Ruta: z.string().optional(),
+  MRC_Venta: z.number().min(0, "El MRC de venta debe ser mayor o igual a 0").default(0),
+  Estado: z.boolean().default(true),
+  Carrier: z.string().optional(),
+  Codigo_AFO: z.string().optional(),
+  MRC_Costo: z.number().min(0).default(0),
+  ID_Viabilidad: z.number().min(0).default(0),
+  ID_EstadoEnlace: z.number().min(0).default(0),
+  ID_OrdenServicio: z.number().min(0).default(0),
+});
+
+export type EnlaceFormValues = z.infer<typeof enlaceSchema>;

@@ -1,0 +1,47 @@
+/* Estilos personalizados para tabs de Viabilidades */
+[data-radix-tabs-root] {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+[data-radix-tabs-list] {
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--gray-6);
+  background-color: white;
+  padding: 0 1rem;
+}
+
+[data-radix-tabs-trigger] {
+  font-size: 9pt;
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--gray-11);
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+[data-radix-tabs-trigger]:hover {
+  color: var(--gray-12);
+  background-color: var(--gray-2);
+}
+
+[data-radix-tabs-trigger][data-state="active"] {
+  color: #4cb74a;
+  border-bottom-color: #4cb74a;
+  font-weight: 500;
+}
+
+[data-radix-tabs-content] {
+  flex: 1;
+  overflow: hidden;
+  outline: none;
+}
+
+[data-radix-tabs-content] > div {
+  height: 100%;
+}
